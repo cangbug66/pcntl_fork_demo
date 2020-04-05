@@ -22,6 +22,8 @@ echo "create_pid:".getmygid().PHP_EOL;
 if( !posix_setsid() ){
     exit('setsid error.');
 }
+
+if (!chdir("/")) exit('chdir error.');
 echo "worker setsid success...".PHP_EOL;
 
 $master_stop = false;
