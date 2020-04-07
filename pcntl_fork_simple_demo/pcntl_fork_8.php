@@ -22,9 +22,19 @@ echo "create_pid:".getmygid().PHP_EOL;
 if( !posix_setsid() ){
     exit('setsid error.');
 }
-
-if (!chdir("/")) exit('chdir error.');
 echo "worker setsid success...".PHP_EOL;
+//改变工作目录
+if (!chdir("/")) exit('chdir error.');
+echo "chdir success...".PHP_EOL;
+//重设文件创建掩码
+umask(0);
+
+//fclose(STDIN);
+//fclose(STDOUT);
+//fclose(STDERR);
+
+
+
 
 $master_stop = false;
 $child_pid = [];
